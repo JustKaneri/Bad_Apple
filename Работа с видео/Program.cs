@@ -23,6 +23,9 @@ namespace Работа_с_видео
             Console.ReadKey();
         }
 
+        /// <summary>
+        /// Show Video
+        /// </summary>
         private static void WriteVedio()
         {
             for (int z = 1; z <= 6487; z++)
@@ -39,10 +42,12 @@ namespace Работа_с_видео
                 if (fileName.Length == 4)
                     fileName = "0" + fileName;
 
+                //Get frame
                 Bitmap bitmap = (Bitmap)Image.FromFile($"MainVideo\\scene{fileName}.png");
                 masChar = new char[bitmap.Height][];
                 bitmap = BitmapCompress(bitmap);
 
+                //Translate frame on String
                 for (int i = 0; i < bitmap.Height; i++)
                 {
                     char[] mas = new char[bitmap.Width];
@@ -62,6 +67,8 @@ namespace Работа_с_видео
                     masChar[i] = mas;
                 }
 
+
+                //Show Frame in Console
                 foreach (var item in masChar)
                 {
                     if (item == null)
@@ -69,13 +76,17 @@ namespace Работа_с_видео
                     Console.WriteLine(item);
                 }
 
+
                 Console.SetCursorPosition(0, 0);
-
-
             }
 
         }
 
+        /// <summary>
+        /// Resize Bitmap
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
         private static Bitmap BitmapCompress(Bitmap value)
         {
             var maxWidh = 240;
